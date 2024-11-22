@@ -9,13 +9,14 @@ public class RaycastInteraction : MonoBehaviour
     public float rayLenght;
     public LayerMask layer;
     public GameObject uiGO;
+    public Image hint;
     public Text hintText;
     public float hintTime;
     public string defaultHint;
     // Start is called before the first frame update
     void Start()
     {
-        
+        hint.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,7 +29,13 @@ public class RaycastInteraction : MonoBehaviour
             interactable = hit.collider.GetComponent<InteractableObject>();
             if (interactable)
             {
+                hint.gameObject.SetActive(true);
             }
+            
+        }
+        else
+        {
+            hint.gameObject.SetActive(false);
         }
         uiGO.SetActive(interactable);
         if (interactable && Input.GetKeyDown(KeyCode.E))
