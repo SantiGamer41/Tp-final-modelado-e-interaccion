@@ -13,6 +13,8 @@ public class RaycastInteraction : MonoBehaviour
     public Text hintText;
     public float hintTime;
     public string defaultHint;
+    public InteractableObject InteractableScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,35 @@ public class RaycastInteraction : MonoBehaviour
         if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, rayLenght, layer))
         {            
             interactable = hit.collider.GetComponent<InteractableObject>();
+            InteractableScript = hit.collider.GetComponent<InteractableObject>();
+
             if (interactable)
             {
+                
                 hint.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+
+                    InteractableScript.PlayObjectAnimation();
+                    string message = "";
+                    if (!interactable.activated)
+                    {
+
+                        interactable.PlayObjectAnimation();
+                        message = "Succesfully open!";
+                    }
+                    else
+                    {
+                        message = "It's already open!";
+                    }
+                    StopAllCoroutines();
+                    StartCoroutine(ShowHintDuringTime(message));
+                }
+
             }
+
+            
             
         }
         else
@@ -38,21 +65,8 @@ public class RaycastInteraction : MonoBehaviour
             hint.gameObject.SetActive(false);
         }
         uiGO.SetActive(interactable);
-        if (interactable && Input.GetKeyDown(KeyCode.E))
-        {
-            string message = "";
-            if (!interactable.activated)
-            {
-                interactable.PlayObjectAnimation();
-                message = "Succesfully open!";
-            }
-            else
-            {
-                message = "It's already open!";
-            }
-            StopAllCoroutines();
-            StartCoroutine(ShowHintDuringTime(message));
-        }
+
+        
 
     }
 
