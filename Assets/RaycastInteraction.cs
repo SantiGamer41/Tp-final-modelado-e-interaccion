@@ -39,12 +39,14 @@ public class RaycastInteraction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-                    InteractableScript.PlayObjectAnimation();
+                    
                     string message = "";
+
                     if (!interactable.activated)
                     {
-
+                        InteractableScript.PlayObjectAnimation();
                         interactable.PlayObjectAnimation();
+                        interactable.activated = true;
                         message = "Succesfully open!";
                     }
                     else
@@ -87,7 +89,7 @@ public class RaycastInteraction : MonoBehaviour
             yield return null;
         }
         uiGO.SetActive(false);
-        hintText.text = defaultHint;
+        hintText.text = "Press E to Open";
     }
 
 }
