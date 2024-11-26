@@ -4231,12 +4231,18 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 16
-  uiGO: {fileID: 0}
+  uiGO: {fileID: 1305444656}
   hint: {fileID: 1660685117}
   hintText: {fileID: 113574174}
   hintTime: 1
   defaultHint: Press E to Open
   InteractableScript: {fileID: 0}
+--- !u!1 &1305444656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7689610407281160858, guid: 1a07368a60fe92540bc886469a263101,
+    type: 3}
+  m_PrefabInstance: {fileID: 1442225217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312524654
 GameObject:
   m_ObjectHideFlags: 0
